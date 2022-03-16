@@ -1,0 +1,28 @@
+fun main() {
+    var s = readLine()!!.toString()
+    val k = s.substringBefore(' ').toInt()
+    val l = s.substringAfter(' ').toInt()
+    var let = mutableListOf<String>()
+    var kod = mutableListOf<String>()
+    
+    for (i in 1 .. k) {
+        s = readLine()!!.toString()
+        let.add(s.substringBefore(':').toString())
+        kod.add(s.substringAfter(' ').toString())
+    }
+    s = ""
+    var strKod = readLine()!!.toString()
+    var str = ""
+    
+    while (strKod.length > 0) {
+        for (i in 1..strKod.length) {
+            str = "$str${strKod[i-1]}"
+            if (kod.contains(str)) {
+                strKod.drop(1)
+                s = "$s${let[kod.indexOf(str)]}"
+                str = ""
+            }
+        }
+    }
+    print(s)
+}
